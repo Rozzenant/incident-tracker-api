@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Incident(models.Model):
     STATUS_CHOICES = [
         ('open', 'Открыт'),
@@ -32,4 +33,3 @@ class Incident(models.Model):
 
     def __str__(self):
         return f"[{self.get_status_display()}] {self.description[:50]}"
-
