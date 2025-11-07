@@ -12,7 +12,7 @@ def test_create_incident_success():
     payload = {
         "description": "Проблема с самокатом на входе в ТЦ",
         "status": "open",
-        "source": "operator"
+        "source": "operator",
     }
 
     response = client.post(url, data=payload, format='json')
@@ -34,7 +34,7 @@ def test_create_incident_invalid_status():
     payload = {
         "description": "Неверный статус",
         "status": "bad_status",
-        "source": "operator"
+        "source": "operator",
     }
 
     response = client.post(url, data=payload, format='json')
@@ -48,10 +48,7 @@ def test_create_incident_missing_description():
     client = APIClient()
     url = reverse('incident-list')
 
-    payload = {
-        "status": "open",
-        "source": "operator"
-    }
+    payload = {"status": "open", "source": "operator"}
 
     response = client.post(url, data=payload, format='json')
 

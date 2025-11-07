@@ -3,7 +3,11 @@ from rest_framework.response import Response
 from .models import Incident
 from .serializers import IncidentSerializer, IncidentStatusUpdateSerializer
 from drf_yasg.utils import swagger_auto_schema
-from .swagger_docs import incident_get_schema, incident_post_schema, incident_patch_schema
+from .swagger_docs import (
+    incident_get_schema,
+    incident_post_schema,
+    incident_patch_schema,
+)
 
 
 class IncidentPagination(pagination.LimitOffsetPagination):
@@ -30,6 +34,7 @@ class IncidentListView(generics.ListCreateAPIView):
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
+
 class IncidentStatusUpdateView(generics.UpdateAPIView):
     queryset = Incident.objects.all()
     serializer_class = IncidentStatusUpdateSerializer
@@ -40,7 +45,7 @@ class IncidentStatusUpdateView(generics.UpdateAPIView):
         if 'status' not in request.data:
             return Response(
                 {"status": ["This field is required."]},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
         return self.partial_update(request, *args, **kwargs)
 
@@ -48,5 +53,5 @@ class IncidentStatusUpdateView(generics.UpdateAPIView):
     def put(self, request, *args, **kwargs):
         return Response(
             {"detail": "PUT method not allowed."},
-            status=status.HTTP_405_METHOD_NOT_ALLOWED
+            status=status.HTTP_405_METHOD_NOT_ALLOWED,
         )

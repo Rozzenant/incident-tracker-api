@@ -8,11 +8,12 @@ class IncidentSerializer(serializers.ModelSerializer):
         fields = ['id', 'description', 'status', 'source', 'created_at']
         read_only_fields = ['id', 'created_at']
 
+
 class IncidentStatusUpdateSerializer(serializers.ModelSerializer):
     status = serializers.ChoiceField(
         choices=Incident.STATUS_CHOICES,
         required=True,
-        help_text="Новый статус инцидента"
+        help_text="Новый статус инцидента",
     )
 
     class Meta:
