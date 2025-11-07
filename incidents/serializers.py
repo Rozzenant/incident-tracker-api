@@ -6,3 +6,4 @@ class IncidentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Incident
         fields = ['id', 'description', 'status', 'source', 'created_at']
+        read_only_fields = ['id', 'created_at']
